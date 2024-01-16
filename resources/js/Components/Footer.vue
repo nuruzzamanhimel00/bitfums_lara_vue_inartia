@@ -8,10 +8,10 @@
                     href="/test"
                     >Test</Link
                 > -->
-                <Link :url="$page.url" name="Test" href="/test" />
+                <Link url="/test" name="Test" href="/test" />
             </li>
             <li class="nav-item">
-                <Link :url="$page.url" name="About" href="/about" />
+                <Link url="/about" name="About" href="/about" />
             </li>
         </ul>
     </div>
@@ -19,7 +19,7 @@
 
 <script setup>
 // import { Link } from "@inertiajs/vue3";
-import Link from "../Pages/Link.vue";
+import Link from "@/Components/Link.vue";
 </script>
 
 <style scoped>

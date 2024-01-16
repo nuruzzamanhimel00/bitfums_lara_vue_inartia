@@ -1,17 +1,17 @@
 <script setup>
-import Footer from "../Components/Footer.vue";
+// import Footer from "@/Components/Footer.vue";
+import Layout from "@/Components/Layout.vue";
 import { ref } from "vue";
 let count = ref(0);
 </script>
 
 <template>
-    <div>
+    <Layout>
         <button @click="count++">+</button>
         {{ count }}
         <button @click="count--">-</button>
         <hr />
-        <Footer />
-    </div>
+    </Layout>
 </template>
 
 <style lang="scss" scoped></style>
