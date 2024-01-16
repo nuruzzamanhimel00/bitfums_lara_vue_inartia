@@ -15,7 +15,11 @@
                 <li class="nav-item">
                     <Link url="/about" name="About" href="/about" />
                 </li>
+                <li class="nav-item">
+                    <Link url="/login" name="Login" href="/login" />
+                </li>
             </ul>
+            <input type="text" placeholder="seach herea" />
         </header>
         <slot></slot>
 

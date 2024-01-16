@@ -1,17 +1,23 @@
 <script setup>
 // import Footer from "@/Components/Footer.vue";
-import Layout from "@/Components/Layout.vue";
+// import Layout from "@/Components/Layout.vue";
 import { ref } from "vue";
 let count = ref(0);
 </script>
+<!-- <script>
+import Layout from "@/Components/Layout.vue";
+export default {
+    layout: Layout,
+};
+</script> -->
 
 <template>
-    <Layout>
+    <div>
         <button @click="count++">+</button>
         {{ count }}
         <button @click="count--">-</button>
         <hr />
-    </Layout>
+    </div>
 </template>
 
 <style lang="scss" scoped></style>
