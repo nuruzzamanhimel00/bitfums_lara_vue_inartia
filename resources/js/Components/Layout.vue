@@ -4,6 +4,9 @@
             <h1>Header</h1>
             <ul class="nav">
                 <li class="nav-item">
+                    <Link url="/" name="Home" href="/" />
+                </li>
+                <li class="nav-item">
                     <!-- <Link
                         :class="{ active: $page.url === '/test' }"
                         preserve-scroll
