@@ -29,3 +29,8 @@ Route::get('/about', function () {
 Route::get('/login', function () {
     return Inertia::render('Login');
 });
+
+Route::get('/laravel', function () {
+    // return Inertia::render('LaravelPage');
+    return view('pages.laravel');
+});
