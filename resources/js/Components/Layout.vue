@@ -1,5 +1,9 @@
 <template>
     <div>
+        <Head>
+            <title>Incaria js layout</title>
+            <meta name="description" content="lorem Home page" />
+        </Head>
         <header>
             <h1>Header</h1>
             <ul class="nav">
@@ -33,6 +37,7 @@
 <script setup>
 import Footer from "@/Components/Footer.vue";
 import Link from "@/Components/Link.vue";
+import { Head } from "@inertiajs/vue3";
 </script>
 
 <style scoped></style>

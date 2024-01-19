@@ -18,6 +18,8 @@ use Inertia\Inertia;
 Route::get('/', function () {
     $monitors = Monitor::all();
     return Inertia::render('Home',['monitors' => $monitors]);
+    // return Inertia::render('Home',['monitors' => $monitors])
+    // ->withViewData(['title' => 'Home page']);
     // return view('welcome');
 });
 Route::get('/test', function () {
