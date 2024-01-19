@@ -4,8 +4,9 @@
             <div class="card-title">
                 Monitor List
                 <Link :href="route('site.create')">
-                    <button>Visite Site</button>
+                    <button>Ziggi Visite Site</button>
                 </Link>
+                <button @click.prevent="clickHander">Visite Site</button>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -19,7 +20,7 @@
                     </thead>
                     <tbody>
                         <tr
-                            v-for="(monitor, key) in monitors"
+                            v-for="(monitor, key) in monitors.data"
                             :key="monitor.id"
                         >
                             <th scope="row">{{ key + 1 }}</th>
@@ -37,8 +38,14 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 defineProps(["monitors"]);
+
+function clickHander() {
+    router.visit(route("site.create"), {
+        method: "get",
+    });
+}
 </script>
 
 <style lang="scss" scoped></style>
