@@ -31,6 +31,9 @@ Route::get('/about', function () {
 Route::get('/login', function () {
     return Inertia::render('Login');
 });
+Route::get('/site/create', function () {
+    return Inertia::render('Site/Create');
+})->name('site.create');
 
 Route::get('/laravel', function () {
     // return Inertia::render('LaravelPage');
