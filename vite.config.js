@@ -16,6 +16,7 @@
 //     ],
 // });
 
+//note: inartia js and vuejs app.js commine
 import laravel from "laravel-vite-plugin";
 import vue from "@vitejs/plugin-vue";
 

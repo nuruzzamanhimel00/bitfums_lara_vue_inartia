@@ -1,8 +1,10 @@
 <?php
 
-use App\Models\Monitor;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+use App\Models\Monitor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,7 @@ Route::get('/', function () {
     // return Inertia::render('Home',['monitors' => $monitors])
     // ->withViewData(['title' => 'Home page']);
     // return view('welcome');
-});
+})->name('home');
 Route::get('/test', function () {
     return Inertia::render('Test');
 });
@@ -30,6 +32,14 @@ Route::get('/about', function () {
 });
 Route::get('/login', function () {
     return Inertia::render('Login');
+});
+Route::post('/login/submit', function (Request $request) {
+    if(count($request->all()) > 0){
+
+        return to_route('home');
+    }
+    // return Inertia::location('/');
+//    dd($request->all());
 });
 Route::get('/site/create', function () {
     return Inertia::render('Site/Create');
