@@ -30,7 +30,13 @@ let formData = reactive({
                     placeholder="User name"
                     v-model="formData.username"
                 />
-                <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                <span
+                    class="focus-input100 text-danger ml-5"
+                    data-placeholder="&#xe82a;"
+                    v-if="$attrs.errors"
+                >
+                    {{ $attrs.errors.username }}
+                </span>
             </div>
 
             <div
@@ -44,7 +50,13 @@ let formData = reactive({
                     placeholder="Password"
                     v-model="formData.password"
                 />
-                <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                <span
+                    class="focus-input100 text-danger ml-5"
+                    data-placeholder="&#xe80f;"
+                    v-if="$attrs.errors"
+                >
+                    {{ $attrs.errors.password }}
+                </span>
             </div>
 
             <div class="container-login100-form-btn m-t-32">

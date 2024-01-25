@@ -34,6 +34,10 @@ Route::get('/login', function () {
     return Inertia::render('Login');
 });
 Route::post('/login/submit', function (Request $request) {
+    $request->validate([
+        'username' => ['required', "max:100"],
+        'password' => ['required', "min:6"],
+    ]);
     if(count($request->all()) > 0){
 
         return to_route('home');
