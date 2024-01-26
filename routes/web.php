@@ -34,6 +34,7 @@ Route::get('/login', function () {
     return Inertia::render('Login');
 });
 Route::post('/login/submit', function (Request $request) {
+    sleep(3);
     $request->validate([
         'username' => ['required', "max:100"],
         'password' => ['required', "min:6"],

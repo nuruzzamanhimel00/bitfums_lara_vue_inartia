@@ -6,7 +6,9 @@
                 <Link :href="route('site.create')">
                     <button>Ziggi Visite Site</button>
                 </Link>
-                <button @click.prevent="clickHander">Visite Site</button>
+                <button class="ml-5" @click.prevent="clickHander">
+                    Visite Site
+                </button>
             </div>
             <div class="card-body">
                 <table class="table">
