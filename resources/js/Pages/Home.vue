@@ -16,6 +16,13 @@ import MonitorList from "../Components/Home/MonitorList.vue";
 import { Head } from "@inertiajs/vue3";
 
 defineProps(["monitors"]);
+
+// import { getCurrentInstance } from "vue";
+
+// const instance = getCurrentInstance();
+// // Accessing $attrs
+// const isLoggedIn = instance.attrs.isLoggedIn;
+// console.log("isLoggedIn", isLoggedIn);
 </script>
 
 <style lang="scss" scoped></style>

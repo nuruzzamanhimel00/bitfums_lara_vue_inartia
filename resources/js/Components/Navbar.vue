@@ -15,26 +15,21 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <Link url="/" name="Home" href="/" class="nav-link" />
-                </li>
-                <li class="nav-item">
+                <li
+                    v-if="isLoggedIn"
+                    class="nav-item"
+                    v-for="(nav, key) in navlink"
+                    :key="key"
+                >
                     <Link
-                        url="/test"
-                        name="Test"
-                        href="/test"
+                        :url="nav.url"
+                        :name="nav.name"
+                        :href="nav.href"
                         class="nav-link"
                     />
                 </li>
-                <li class="nav-item">
-                    <Link
-                        url="/about"
-                        name="About"
-                        href="/about"
-                        class="nav-link"
-                    />
-                </li>
-                <li class="nav-item">
+
+                <li v-else class="nav-item">
                     <Link
                         url="/login"
                         name="Login"
@@ -58,7 +53,7 @@
                     Search
                 </button>
             </form>
-            <ul>
+            <ul v-if="isLoggedIn">
                 <li class="nav-item dropdown">
                     <a
                         class="nav-link dropdown-toggle"
@@ -84,7 +79,35 @@
 </template>
 <script setup>
 import Link from "@/Components/Link.vue";
-import { router } from "@inertiajs/vue3";
+import { router, usePage } from "@inertiajs/vue3";
+import { computed, reactive } from "vue";
+
+const page = usePage();
+
+const isLoggedIn = computed(() => {
+    return page.props.auth.isLoggedIn;
+});
+
+const navlink = reactive([
+    {
+        url: "/",
+        name: "Home",
+        href: "/",
+    },
+    {
+        url: "/about",
+        name: "About",
+        href: "/about",
+    },
+    {
+        url: "/about",
+        name: "About",
+        href: "/about",
+    },
+]);
+
+// console.log("isLoggedIn", isLoggedIn);
+
 function logoutHandler() {
     router.visit("/logout", {
         method: "post",
