@@ -9,7 +9,11 @@
     @routes
     @vite('resources/js/app.js')
     @inertiaHead
-
+    {{-- <script>
+        window.auth = @json([
+            'isLoggedin' => false
+        ])
+    </script> --}}
   </head>
   <body>
 

@@ -10,14 +10,8 @@ export default {
 import { Link } from "@inertiajs/vue3";
 import { useForm } from "@inertiajs/vue3";
 let formData = useForm({
-    username: "",
+    email: "",
     password: "",
-});
-
-// Update the default value of multiple fields...
-formData.defaults({
-    username: "Updated Example",
-    password: "password",
 });
 
 function formSubmit() {
@@ -50,14 +44,14 @@ function changeInput(event) {
         >
             <div
                 class="wrap-input100 validate-input"
-                data-validate="Enter username"
+                data-validate="Enter email"
             >
                 <input
                     class="input100"
-                    type="text"
-                    name="username"
-                    placeholder="User name"
-                    v-model="formData.username"
+                    type="email"
+                    name="email"
+                    placeholder="User email"
+                    v-model="formData.email"
                     @input="changeInput($event)"
                 />
                 <span
@@ -65,7 +59,7 @@ function changeInput(event) {
                     data-placeholder="&#xe82a;"
                     v-if="formData.errors"
                 >
-                    {{ formData.errors.username }}
+                    {{ formData.errors.email }}
                 </span>
             </div>
 
@@ -106,9 +100,7 @@ function changeInput(event) {
                     :data="formData"
                     >Logout</Link
                 > -->
-                <div v-if="formData.isDirty">
-                    There are unsaved form changes.
-                </div>
+
                 <button
                     :disabled="formData.processing"
                     class="login100-form-btn"
@@ -116,6 +108,15 @@ function changeInput(event) {
                 >
                     Login {{ formData.processing }}
                 </button>
+                <ol v-if="formData.errors">
+                    <li
+                        v-for="key in Object.keys(formData.errors)"
+                        :key="key"
+                        style="color: red"
+                    >
+                        {{ formData.errors[key] }}
+                    </li>
+                </ol>
             </div>
         </form>
     </div>

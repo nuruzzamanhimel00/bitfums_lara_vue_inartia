@@ -4,6 +4,7 @@ use Inertia\Inertia;
 
 use App\Models\Monitor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,20 +33,35 @@ Route::get('/about', function () {
 });
 Route::get('/login', function () {
     return Inertia::render('Login');
-});
+})->name('login');
 Route::post('/login/submit', function (Request $request) {
-    sleep(3);
+
     $request->validate([
-        'username' => ['required', "max:100"],
+        'email' => ['required', "max:100"],
         'password' => ['required', "min:6"],
     ]);
-    if(count($request->all()) > 0){
+    $credentials = $request->only('email', 'password');
 
+    if (Auth::attempt($credentials)) {
+        // Authentication passed...
         return to_route('home');
+    }else{
+        return redirect()->back()->withErrors([
+            'error_message' => 'The provided credentials do not match our records.',
+        ]);
     }
+
     // return Inertia::location('/');
 //    dd($request->all());
 });
+
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return to_route('login');
+
+})->name('logout');
 Route::get('/site/create', function () {
     return Inertia::render('Site/Create');
 })->name('site.create');
