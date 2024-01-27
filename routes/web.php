@@ -18,22 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $monitors = Monitor::paginate();
-    return Inertia::render('Home',['monitors' => $monitors]);
-    // return Inertia::render('Home',['monitors' => $monitors])
-    // ->withViewData(['title' => 'Home page']);
-    // return view('welcome');
-})->name('home');
-Route::get('/test', function () {
-    return Inertia::render('Test');
-});
-Route::get('/about', function () {
-    return Inertia::render('About');
-});
 Route::get('/login', function () {
     return Inertia::render('Login');
-})->name('login');
+})->name('login')->middleware('guest');
+
+
+
+
 Route::post('/login/submit', function (Request $request) {
 
     $request->validate([
@@ -55,13 +46,30 @@ Route::post('/login/submit', function (Request $request) {
 //    dd($request->all());
 });
 
-Route::post('/logout', function (Request $request) {
-    Auth::logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-    return to_route('login');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        $monitors = Monitor::paginate();
+        return Inertia::render('Home',['monitors' => $monitors]);
+        // return Inertia::render('Home',['monitors' => $monitors])
+        // ->withViewData(['title' => 'Home page']);
+        // return view('welcome');
+    })->name('home');
+    Route::get('/test', function () {
+        return Inertia::render('Test');
+    });
+    Route::get('/about', function () {
+        return Inertia::render('About');
+    });
+    Route::post('/logout', function (Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return to_route('login');
 
-})->name('logout');
+    })->name('logout');
+});
+
+
 Route::get('/site/create', function () {
     return Inertia::render('Site/Create');
 })->name('site.create');
