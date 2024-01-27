@@ -48,12 +48,17 @@ Route::post('/login/submit', function (Request $request) {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        $monitors = Monitor::paginate();
+        $monitors = Monitor::paginate(5);
         return Inertia::render('Home',['monitors' => $monitors]);
         // return Inertia::render('Home',['monitors' => $monitors])
         // ->withViewData(['title' => 'Home page']);
         // return view('welcome');
     })->name('home');
+
+    Route::get('/fetch-monitors-data', function () {
+        $monitors = Monitor::paginate(5);
+        return response()->json($monitors);
+    });
     Route::get('/test', function () {
         return Inertia::render('Test');
     });
